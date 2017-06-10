@@ -9,6 +9,10 @@ fi
 # Start the build with an empty ACI
 acbuild --debug begin
 
+# Adding Maintainer Information
+acbuild label add NAME "DAVINDER PAL"
+acbuild label add EMAIL "dpsangwal@gmail.com"
+
 # In the event of the script exiting, end the build
 trap '{ export EXT=$?; acbuild --debug end && exit $EXT; }' EXIT
 
