@@ -1,8 +1,7 @@
 #!/usr/bin/env acbuild-script
 
 # Adding Maintainer Information
-label add NAME "DAVINDER PAL"
-label add EMAIL "dpsangwal@gmail.com"
+acbuild annotation add authors "DAVINDER PAL <dpsangwal@gmail.com>"
 
 # Start the build with an empty ACI
 begin
