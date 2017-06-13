@@ -1,0 +1,41 @@
+#!/usr/bin/env acbuild-script
+
+# Adding Maintainer Information
+annotation add authors "DAVINDER PAL <dpsangwal@gmail.com>"
+
+# Start the build with an empty ACI
+begin
+
+# Name the ACI
+set-name 116davinder/golang
+
+# Based on alpine
+dep add quay.io/coreos/alpine-sh
+
+# Install apache
+run -- apk update
+run -- apk add ruby
+
+# Add a port for http traffic on port 4001
+port add http tcp 4001
+
+# Setting Environment Variables
+environment add ENV devel
+
+# Making Application Folder
+run -- mkdir -p /app
+
+# Copy the application to the image
+copy-to-dir copy ./* /app
+
+# Setting Working Directory
+set-working-directory /app
+
+# Installing Go Dependencies
+run -- bundle install
+
+# Run ruby application
+acbuild --debug set-exec -- /usr/bin/ruby /app/main.rb
+
+# Write the result
+acbuild --debug write --overwrite ruby-alpine.aci
