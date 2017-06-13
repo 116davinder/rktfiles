@@ -1,0 +1,37 @@
+#!/usr/bin/env acbuild-script
+
+# Adding Maintainer Information
+annotation add authors "DAVINDER PAL <dpsangwal@gmail.com>"
+
+# Start the build with an empty ACI
+begin
+
+# Name the ACI
+set-name 116davinder/java7-maven
+
+# Based on openjdk7
+dep add 116davinder/java7
+
+# Install Maven
+run -- apk update add maven
+
+# Add a port for http traffic on port 4000
+port add http tcp 4000
+
+# Making Application Folder
+run -- mkdir -p /app
+
+# Copy the application to the image
+copy-to-dir copy ./* /app
+
+# Setting Working Directory
+set-working-directory /app
+
+# Installing Go Dependencies
+run -- mvn clean package
+
+# Running Application
+acbuild --debug set-exec -- /usr/bin/java -jar /app/target/<name of your kotlin jar>.jar
+
+# Write the result
+acbuild --debug write --overwrite kotlin-java7-maven-alpine.aci
