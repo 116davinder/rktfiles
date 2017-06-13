@@ -1,0 +1,16 @@
+#!/usr/bin/env acbuild-script
+
+# Adding Maintainer Information
+annotation add authors "DAVINDER PAL <dpsangwal@gmail.com>"
+
+# Start the build with an empty ACI
+begin
+
+# Name the ACI
+set-name 116davinder/java8
+
+# Based on alpine
+dep add quay.io/coreos/alpine-sh
+
+# Install apache
+run -- apk update add openjdk8
