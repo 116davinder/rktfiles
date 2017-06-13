@@ -1,0 +1,39 @@
+#!/usr/bin/env acbuild-script
+
+# Adding Maintainer Information
+annotation add authors "DAVINDER PAL <dpsangwal@gmail.com>"
+
+# Start the build with an empty ACI
+begin
+
+# Name the ACI
+set-name 116davinder/golang
+
+# Based on alpine
+dep add quay.io/coreos/alpine-sh
+
+# Install apache
+run -- apk update
+run -- apk add go
+run -- apk add glide
+
+# Add a port for http traffic on port 4000
+port add http tcp 4000
+
+# Making Application Folder
+run -- mkdir -p /app
+
+# Copy the application to the image
+copy-to-dir copy ./* /app
+
+# Setting Working Directory
+set-working-directory /app
+
+# Installing Go Dependencies
+run -- glide install
+
+# Running Application
+acbuild --debug set-exec -- /usr/bin/go /app/main.go
+
+# Write the result
+acbuild --debug write --overwrite golang-alpine.aci
