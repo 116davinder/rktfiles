@@ -12,9 +12,8 @@ set-name 116davinder/golang
 # Based on alpine
 dep add quay.io/coreos/alpine-sh
 
-# Install apache
-run -- apk update
-run -- apk add ruby
+# Install Ruby
+run -- apk update add ruby
 
 # Add a port for http traffic on port 4001
 port add http tcp 4001

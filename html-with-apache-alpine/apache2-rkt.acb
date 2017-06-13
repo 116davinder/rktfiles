@@ -13,8 +13,7 @@ set-name 116davinder/apache2
 dep add quay.io/coreos/alpine-sh
 
 # Install apache
-run -- apk update
-run -- apk add apache2
+run -- apk update add apache2
 
 run -- /bin/sh -c "echo 'ServerName localhost' >> /etc/apache2/httpd.conf"
 

@@ -21,7 +21,7 @@ acbuild --debug set-name 116daivnder/python3
 # Based on alpine
 acbuild --debug dep add quay.io/coreos/alpine-sh
 
-# Install nodejs
+# Install Python3
 acbuild --debug run -- apk update
 acbuild --debug run -- apk add python3
 acbuild --debug run -- mkdir -p /app

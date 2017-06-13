@@ -12,9 +12,8 @@ set-name 116davinder/nginx
 # Based on alpine
 dep add quay.io/coreos/alpine-sh
 
-# Install apache
-run -- apk update
-run -- apk add nginx
+# Install Nginx
+run -- apk update add nginx
 
 # Add a port for http traffic on port 80
 port add http tcp 80

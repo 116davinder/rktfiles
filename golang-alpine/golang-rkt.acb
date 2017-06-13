@@ -12,10 +12,8 @@ set-name 116davinder/golang
 # Based on alpine
 dep add quay.io/coreos/alpine-sh
 
-# Install apache
-run -- apk update
-run -- apk add go
-run -- apk add glide
+# Install Golang
+run -- apk update add go glide
 
 # Add a port for http traffic on port 4000
 port add http tcp 4000
